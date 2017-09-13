@@ -8,10 +8,10 @@ import javax.persistence.*;
 @Table
 public class Blog {
 
-	
+	@Id
 	private int blogId;
 	
-	private String blogName,blogContent,status,username;
+	private String blogName,blogContent,status,Userid;
 	
 	private int likes;
 	
@@ -49,12 +49,13 @@ public class Blog {
 		this.status = status;
 	}
 
-	public String getUsername() {
-		return username;
+
+	public String getUserid() {
+		return Userid;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUserid(String userid) {
+		Userid = userid;
 	}
 
 	public int getLikes() {
