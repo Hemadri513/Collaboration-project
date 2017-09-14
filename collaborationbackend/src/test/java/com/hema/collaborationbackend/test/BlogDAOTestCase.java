@@ -63,7 +63,7 @@ public class BlogDAOTestCase
 		assertTrue("Problem in Blog creation",blogDAO.approveBlog(blog));
 		
 	}
-	
+	@Ignore
 	@Test
 	public void getAllApprovedBlogTest() 
 	{
@@ -71,6 +71,13 @@ public class BlogDAOTestCase
 		List<Blog> listBlog=blogDAO.getBlogs();
 		assertTrue("No Approved Blogs", listBlog.size()>0);
 	}
+	
+	@Test
+	public void deleteBlogTest() {
+		assertTrue("problem in deleting", blogDAO.deleteBlog(1001));
+		
+	}
+	
 	
 
 }
