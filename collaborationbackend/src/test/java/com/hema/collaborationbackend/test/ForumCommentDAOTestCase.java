@@ -8,7 +8,6 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.stereotype.Repository;
 
 import com.hema.collaborationbackend.dao.ForumCommentDAO;
 import com.hema.collaborationbackend.model.ForumComment;
