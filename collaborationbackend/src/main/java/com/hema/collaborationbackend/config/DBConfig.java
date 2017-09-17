@@ -18,6 +18,7 @@ import com.hema.collaborationbackend.dao.BlogDAOImpl;
 import com.hema.collaborationbackend.model.Blog;
 import com.hema.collaborationbackend.model.BlogComment;
 import com.hema.collaborationbackend.model.Forum;
+import com.hema.collaborationbackend.model.ForumComment;
 
 @Configuration
 @ComponentScan("com.hema.collaborationbackend.model")
@@ -39,7 +40,7 @@ public class DBConfig {
 	public Properties getHibernateProperties() {
 		
 		Properties properties = new Properties();
-		properties.setProperty("hibernate.hbm2dd1.auto","update");
+		properties.setProperty("hibernate.hbm2ddl.auto","update");
 		properties.put("hibernate.dialect","org.hibernate.dialect.Oracle10gDialect");
 		return properties;
 	}
@@ -49,9 +50,8 @@ public class DBConfig {
 		
 		LocalSessionFactoryBuilder localSessionFactoryBuilder = new LocalSessionFactoryBuilder(getOracleDataSource());
 		localSessionFactoryBuilder.addProperties(getHibernateProperties());
-		localSessionFactoryBuilder.addAnnotatedClass(Blog.class);
-		localSessionFactoryBuilder.addAnnotatedClass(Forum.class);
-		localSessionFactoryBuilder.addAnnotatedClass(BlogComment.class);
+		
+		localSessionFactoryBuilder.scanPackages("com.hema.collaborationbackend.model");
 		System.out.println("sessionFactory Bean Created");
 		return localSessionFactoryBuilder.buildSessionFactory();
 	}
