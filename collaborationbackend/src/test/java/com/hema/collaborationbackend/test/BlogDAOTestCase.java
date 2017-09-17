@@ -38,7 +38,7 @@ public class BlogDAOTestCase
 		blog.setBlogContent("selenium is a testing tool");
 		blog.setUserid("hemadri.m513@gmail.com");
 		blog.setCreateDate(new java.util.Date());
-		blog.setStatus("NA");
+		blog.setStatus("A");
 		blog.setLikes(0);
 		
 		assertTrue("Problem in Blog creation",blogDAO.createBlog(blog));
@@ -57,13 +57,14 @@ public class BlogDAOTestCase
 		blog.setBlogContent("selenium is a testing tool");
 		blog.setUserid("hemadri.m513@gmail.com");
 		blog.setCreateDate(new java.util.Date());
-		blog.setStatus("NA");
+		blog.setStatus("A");
 		blog.setLikes(0);
 		
 		assertTrue("Problem in Blog creation",blogDAO.approveBlog(blog));
 		
 	}
-	@Ignore
+	
+	
 	@Test
 	public void getAllApprovedBlogTest() 
 	{
@@ -72,6 +73,7 @@ public class BlogDAOTestCase
 		assertTrue("No Approved Blogs", listBlog.size()>0);
 	}
 	
+	@Ignore
 	@Test
 	public void deleteBlogTest() {
 		assertTrue("problem in deleting", blogDAO.deleteBlog(1001));

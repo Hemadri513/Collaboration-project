@@ -10,24 +10,24 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.hema.collaborationbackend.model.Blog;
+import com.hema.collaborationbackend.model.BlogComment;
 
-@Repository("blogDAO")
-public class BlogDAOImpl implements BlogDAO {
+@Repository("blogCommentDAO")
+public class BlogCommentDAOImpl implements BlogCommentDAO {
 
 	@Autowired
 	SessionFactory sessionFactory;
 	
-	public BlogDAOImpl(SessionFactory sessionFactory)
+	public BlogCommentDAOImpl(SessionFactory sessionFactory)
 	{
 		this.sessionFactory=sessionFactory;
 	}
 	
 	@Transactional
-	public boolean createBlog(Blog blog)
-	{
+	@Override
+	public boolean createBlogComment(BlogComment blogComment) {
 		try {
-			sessionFactory.getCurrentSession().saveOrUpdate(blog);
+			sessionFactory.getCurrentSession().saveOrUpdate(blogComment);
 			return true;
 		}
 		catch(Exception e)
@@ -38,11 +38,11 @@ public class BlogDAOImpl implements BlogDAO {
 	}
 
 	@Transactional
-	public boolean approveBlog(Blog blog)
-	{
+	@Override
+	public boolean approveBlogComment(BlogComment blogComment) {
 		try {
-			blog.setStatus("A");
-			sessionFactory.getCurrentSession().saveOrUpdate(blog);
+		
+			sessionFactory.getCurrentSession().saveOrUpdate(blogComment);
 			return true;
 		}
 		catch(Exception e)
@@ -54,12 +54,12 @@ public class BlogDAOImpl implements BlogDAO {
 	}
 
 	@Transactional
-	public boolean deleteBlog(int blogId) {
-
+	@Override
+	public boolean deleteBlogComment(int ID) {
 		try {
 			Session session=sessionFactory.openSession();
-			Blog blog=(Blog)session.get(Blog.class,blogId);
-			session.delete(blog);
+			BlogComment blogComment=(BlogComment)session.get(BlogComment.class,ID);
+			session.delete(blogComment);
 			session.flush();
 			session.close();
 			return true;
@@ -71,27 +71,26 @@ public class BlogDAOImpl implements BlogDAO {
 		}
 	}
 
-	public boolean editBlog(int blogId) {
-		
-		
-		
+	@Override
+	public boolean editBlogComment(int ID) {
+		// TODO Auto-generated method stub
 		return false;
 	}
 
-	public Blog getBlog(int blogId) {
+	@Override
+	public BlogComment getBlogComment(int ID) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Transactional
-	public List<Blog> getBlogs() {
-		
+	@Override
+	public List<BlogComment> getBlogComments() {
 		Session session = sessionFactory.openSession();
-		Query query = session.createQuery("from Blog where status = 'A'");
-		List<Blog> listBlog= query.list();
+		Query query = session.createQuery("from BlogComment where status = 'A'");
+		List<BlogComment> listBlogComment= query.list();
 		session.close();
-		return listBlog;
-
+		return listBlogComment;
 	}
 
 }

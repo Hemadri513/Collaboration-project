@@ -11,23 +11,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.hema.collaborationbackend.model.Blog;
+import com.hema.collaborationbackend.model.Forum;
 
-@Repository("blogDAO")
-public class BlogDAOImpl implements BlogDAO {
+
+@Repository("forumDAO")
+public class ForumDAOImpl implements ForumDAO {
 
 	@Autowired
 	SessionFactory sessionFactory;
 	
-	public BlogDAOImpl(SessionFactory sessionFactory)
+	public ForumDAOImpl(SessionFactory sessionFactory)
 	{
 		this.sessionFactory=sessionFactory;
 	}
 	
 	@Transactional
-	public boolean createBlog(Blog blog)
-	{
+	public boolean createforum(Forum forum) {
 		try {
-			sessionFactory.getCurrentSession().saveOrUpdate(blog);
+			sessionFactory.getCurrentSession().saveOrUpdate(forum);
 			return true;
 		}
 		catch(Exception e)
@@ -36,13 +37,13 @@ public class BlogDAOImpl implements BlogDAO {
 			return false;
 		}
 	}
-
+	
 	@Transactional
-	public boolean approveBlog(Blog blog)
-	{
+	public boolean approveforum(Forum forum) {
 		try {
-			blog.setStatus("A");
-			sessionFactory.getCurrentSession().saveOrUpdate(blog);
+			forum.setStatus("NA");
+			sessionFactory.getCurrentSession().saveOrUpdate(forum);
+		
 			return true;
 		}
 		catch(Exception e)
@@ -50,16 +51,14 @@ public class BlogDAOImpl implements BlogDAO {
 			System.out.println("exception arised:" +e);
 			return false;
 		}
-
 	}
 
 	@Transactional
-	public boolean deleteBlog(int blogId) {
-
+	public boolean deleteforum(int forumId) {
 		try {
 			Session session=sessionFactory.openSession();
-			Blog blog=(Blog)session.get(Blog.class,blogId);
-			session.delete(blog);
+			Forum forum=(Forum)session.get(Forum.class,forumId);
+			session.delete(forum);
 			session.flush();
 			session.close();
 			return true;
@@ -71,27 +70,24 @@ public class BlogDAOImpl implements BlogDAO {
 		}
 	}
 
-	public boolean editBlog(int blogId) {
-		
-		
-		
+	public boolean editforum(int forumId) {
+		// TODO Auto-generated method stub
 		return false;
 	}
 
-	public Blog getBlog(int blogId) {
-		// TODO Auto-generated method stub
+	public Forum getforum(int forumId) {
+		
 		return null;
+		
 	}
 
-	@Transactional
-	public List<Blog> getBlogs() {
+	public List<Forum> getforums() {
 		
 		Session session = sessionFactory.openSession();
-		Query query = session.createQuery("from Blog where status = 'A'");
-		List<Blog> listBlog= query.list();
+		Query query = session.createQuery("from Forum where status = 'A'");
+		List<Forum> listForum = query.list();
 		session.close();
-		return listBlog;
-
+		return listForum;
 	}
 
 }
