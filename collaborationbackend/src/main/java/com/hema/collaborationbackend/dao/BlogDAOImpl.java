@@ -24,20 +24,23 @@ public class BlogDAOImpl implements BlogDAO {
 	}
 	
 	@Transactional
+	@Override
 	public boolean createBlog(Blog blog)
 	{
 		try {
 			sessionFactory.getCurrentSession().saveOrUpdate(blog);
+			System.out.println("Inertion Successful");
 			return true;
 		}
 		catch(Exception e)
 		{
-			System.out.println("exception arised" +e);
+			System.out.println("Exception Arised:"+e);
 			return false;
 		}
 	}
 
 	@Transactional
+	@Override
 	public boolean approveBlog(Blog blog)
 	{
 		try {
@@ -54,6 +57,7 @@ public class BlogDAOImpl implements BlogDAO {
 	}
 
 	@Transactional
+	@Override
 	public boolean deleteBlog(int blogId) {
 
 		try {
@@ -71,6 +75,7 @@ public class BlogDAOImpl implements BlogDAO {
 		}
 	}
 
+	@Override
 	public boolean editBlog(int blogId) {
 		
 		
@@ -78,17 +83,19 @@ public class BlogDAOImpl implements BlogDAO {
 		return false;
 	}
 
+	@Override
 	public Blog getBlog(int blogId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Transactional
+	@Override
 	public List<Blog> getBlogs() {
 		
 		Session session = sessionFactory.openSession();
 		Query query = session.createQuery("from Blog where status = 'A'");
-		List<Blog> listBlog= query.list();
+		List<Blog> listBlog=query.list();
 		session.close();
 		return listBlog;
 

@@ -33,12 +33,12 @@ public class BlogDAOTestCase
 	{
 		Blog blog = new Blog();
 		
-		blog.setBlogId(1001);
-		blog.setBlogName("selenium");
-		blog.setBlogContent("selenium is a testing tool");
+		blog.setBlogId(1002);
+		blog.setBlogName("Hema");
+		blog.setBlogContent("Hema is a programmer");
 		blog.setUserid("hemadri.m513@gmail.com");
 		blog.setCreateDate(new java.util.Date());
-		blog.setStatus("A");
+		blog.setStatus("NA");
 		blog.setLikes(0);
 		
 		assertTrue("Problem in Blog creation",blogDAO.createBlog(blog));
@@ -52,9 +52,9 @@ public class BlogDAOTestCase
 		
 		Blog blog = new Blog();
 		
-		blog.setBlogId(1001);
-		blog.setBlogName("selenium");
-		blog.setBlogContent("selenium is a testing tool");
+		blog.setBlogId(1002);
+		blog.setBlogName("Hema");
+		blog.setBlogContent("Hema is a programmer");
 		blog.setUserid("hemadri.m513@gmail.com");
 		blog.setCreateDate(new java.util.Date());
 		blog.setStatus("A");

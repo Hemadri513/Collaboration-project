@@ -50,8 +50,7 @@ public class DBConfig {
 		
 		LocalSessionFactoryBuilder localSessionFactoryBuilder = new LocalSessionFactoryBuilder(getOracleDataSource());
 		localSessionFactoryBuilder.addProperties(getHibernateProperties());
-		
-		localSessionFactoryBuilder.scanPackages("com.hema.collaborationbackend.model");
+		localSessionFactoryBuilder.addAnnotatedClass(Blog.class);
 		System.out.println("sessionFactory Bean Created");
 		return localSessionFactoryBuilder.buildSessionFactory();
 	}
