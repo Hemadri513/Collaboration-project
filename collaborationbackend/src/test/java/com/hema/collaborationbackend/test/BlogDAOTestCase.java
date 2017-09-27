@@ -27,14 +27,13 @@ public class BlogDAOTestCase
 		blogDAO = (BlogDAO)annotationConfigAppContext.getBean("blogDAO");
 	}
 	
-	@Ignore
 	@Test
 	public void createBlogTest()
 	{
 		Blog blog = new Blog();
 		
-		blog.setBlogId(1002);
-		blog.setBlogName("Hema");
+		blog.setBlogId(1001);
+		blog.setBlogName("bhagya");
 		blog.setBlogContent("Hema is a programmer");
 		blog.setUserid("hemadri.m513@gmail.com");
 		blog.setCreateDate(new java.util.Date());
@@ -64,7 +63,7 @@ public class BlogDAOTestCase
 		
 	}
 	
-	
+	@Ignore
 	@Test
 	public void getAllApprovedBlogTest() 
 	{
