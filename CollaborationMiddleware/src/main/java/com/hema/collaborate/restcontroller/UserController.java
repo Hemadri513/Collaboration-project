@@ -17,8 +17,25 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
+	public UserController() {
+		System.out.println("user controller");
+	}
+	
+	
 	@RequestMapping(value="/registeruser", method=RequestMethod.POST)
 	public ResponseEntity<?> registerUser(@RequestBody User user) {
+		
+		if(!userService.isUsernameValid(user.getUsername())) 
+		{
+			Error error = new Error(2,"Username already exists.. please enter different username");
+			return new ResponseEntity<Error>(error,HttpStatus.NOT_ACCEPTABLE);
+		}
+		
+		if(!userService.isEmailValid(user.getEmail()))
+		{
+			Error error=new Error(3,"Email address already exists.. please enter different email");
+			return new ResponseEntity<Error>(error,HttpStatus.NOT_ACCEPTABLE);
+		}
 		
 		boolean result=userService.registerUser(user);
 		if(result)
