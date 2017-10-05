@@ -33,7 +33,6 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	@Transactional
 	public boolean isUsernameValid(String username) {
 		Session session=sessionFactory.getCurrentSession();
 		User user=(User)session.get(User.class, username);
@@ -45,13 +44,12 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	@Transactional
 	public boolean isEmailValid(String email) {
 		Session session=sessionFactory.getCurrentSession();
 		Query query=session.createQuery("from User where email=?");
 		query.setString(0, email);
-		User usertable=(User) query.uniqueResult();
-		if(usertable==null)
+		User user=(User) query.uniqueResult();
+		if(user==null)
 			return true;
 		else
 			return false;
