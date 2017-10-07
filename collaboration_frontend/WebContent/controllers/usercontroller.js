@@ -26,6 +26,8 @@ app.controller('UserController',function($scope,UserService,$location){
 			
 			console.log(response.data)
 			console.log(response.status)
+			$scope.error=response.data
+			$location.path('/register')
 		})
 		
 	}
