@@ -10,7 +10,7 @@ public interface UserDAO {
 
 	boolean isEmailValid(String email);
 	
-	
+	User login(User user);
 	
 
 }

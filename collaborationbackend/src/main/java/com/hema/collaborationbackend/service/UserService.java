@@ -7,5 +7,5 @@ public interface UserService {
 	boolean registerUser(User user);
 	boolean isUsernameValid(String username);
 	boolean isEmailValid(String email);
-	
+	User login(User user);
 }

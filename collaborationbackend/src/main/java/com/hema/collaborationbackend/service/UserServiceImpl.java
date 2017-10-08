@@ -28,6 +28,11 @@ public class UserServiceImpl implements UserService {
 
 		return userDAO.isEmailValid(email);
 	}
+
+	@Override
+	public User login(User user) {
+		return userDAO.login(user);
+	}
 	
 	
 	

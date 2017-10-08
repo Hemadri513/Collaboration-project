@@ -24,7 +24,6 @@ public class UserController {
 	
 	@RequestMapping(value="/registeruser", method=RequestMethod.POST)
 	public ResponseEntity<?> registerUser(@RequestBody User user) {
-		
 		if(!userService.isUsernameValid(user.getUsername())) 
 		{
 			Error error = new Error(2,"Username already exists.. please enter different username");
@@ -49,5 +48,16 @@ public class UserController {
 		}
 		
 	}
-
+	
+	@RequestMapping(value="/login",method=RequestMethod.POST)
+	public ResponseEntity<?> login(@RequestBody User user)
+	{
+		User validUser=userService.login(user);
+		if(validUser==null) {
+			Error error=new Error(4,"Invalid Username/Password...");
+			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);	
+		}
+		return new ResponseEntity<User>(validUser,HttpStatus.OK);
+	}
+		
 }

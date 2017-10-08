@@ -27,8 +27,30 @@ app.controller('UserController',function($scope,UserService,$location){
 			console.log(response.data)
 			console.log(response.status)
 			$scope.error=response.data
+
+/*			if($scope.error.code==1) 	// exception
+				$scope.exception=response.data
+			if($scope.error.code==2)
+				$scope.duplicateUser=response.data
+			if($scope.error.code==3)
+				$scope.duplicateEmail=response.data */
+			
 			$location.path('/register')
 		})
-		
+	
 	}
+	
+		$scope.login=function()
+		{
+			console.log($scope.userObj)
+			UserService.login($scope.userObj).then(function(response){
+				$location.path('/home')
+					
+			},function(response){
+				$scope.error=response.data.message
+				$location.path('/login')
+			})
+		}
+		
+	
 })

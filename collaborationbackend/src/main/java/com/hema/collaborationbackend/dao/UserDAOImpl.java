@@ -55,4 +55,14 @@ public class UserDAOImpl implements UserDAO {
 			return false;
 	}
 
+	@Override
+	public User login(User user) {
+		Session session = sessionFactory.getCurrentSession();
+		Query query=session.createQuery("from User where username=? and password=?");
+		query.setString(0,user.getUsername());
+		query.setString(1,user.getPassword());
+		user=(User)query.uniqueResult();
+		return user;
+	}
+
 }
