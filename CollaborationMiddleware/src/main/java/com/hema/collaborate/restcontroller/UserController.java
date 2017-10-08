@@ -53,11 +53,26 @@ public class UserController {
 	public ResponseEntity<?> login(@RequestBody User user)
 	{
 		User validUser=userService.login(user);
-		if(validUser==null) {
+		if(validUser==null) {//invalid username/password
 			Error error=new Error(4,"Invalid Username/Password...");
-			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);	
+			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);	// error end callback func
+			//resposne.data=error
+			//response.status=401
 		}
+		System.out.println("ONLINE Status is" + validUser.isOnline());
+		//update the online status to true
+		validUser.setOnline(true);
+		try {
+		userService.update(validUser);
+		}
+		catch(Exception e) {
+			Error error=new Error(6,"unable to update online status");
+			return new ResponseEntity<Error>(error,HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		System.out.println("Online status after update" + validUser.isOnline());
 		return new ResponseEntity<User>(validUser,HttpStatus.OK);
+		//response.data=validuser
+		//response.status=200
 	}
 		
 }
