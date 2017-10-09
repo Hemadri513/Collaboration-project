@@ -35,6 +35,7 @@
 		<li><a href="#/home">Home</a></li>
 		<li><a href="#/register" ng-hide="currentUser.online">Sign Up</a> </li>
 		<li><a href="#/login" ng-hide="currentUser.online">Sign In</a> </li>
+		<li><a href="#/editprofile" ng-show="currentUser.online">Edit User Profile</a></li>
 		<li><a href="#" ng-show="currentUser.online">Welcome {{currentUser.firstname}} {{currentUser.lastname}} </a></li>
 		<li><a href="" ng-click="logout()" ng-show="currentUser.online">Logout</a></li>
 		</ul>
