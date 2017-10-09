@@ -1,6 +1,6 @@
 
 
-app.controller('UserController',function($scope,UserService,$location){
+app.controller('UserController',function($scope,UserService,$location,$rootScope,$cookieStore){
 	
 	
 	$scope.registerUser=function(){
@@ -44,6 +44,8 @@ app.controller('UserController',function($scope,UserService,$location){
 		{
 			console.log($scope.userObj)
 			UserService.login($scope.userObj).then(function(response){
+				$rootScope.currentUser=response.data
+				$cookieStore.put('userDetails',response.data)
 				$location.path('/home')
 					
 			},function(response){

@@ -1,5 +1,7 @@
 package com.hema.collaborate.restcontroller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -49,8 +51,8 @@ public class UserController {
 		
 	}
 	
-	@RequestMapping(value="/login",method=RequestMethod.POST)
-	public ResponseEntity<?> login(@RequestBody User user)
+	@RequestMapping(value="/login",method=RequestMethod.POST) // each user unique session object will get created
+	public ResponseEntity<?> login(@RequestBody User user,HttpSession session)
 	{
 		User validUser=userService.login(user);
 		if(validUser==null) {//invalid username/password
@@ -70,9 +72,27 @@ public class UserController {
 			return new ResponseEntity<Error>(error,HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		System.out.println("Online status after update" + validUser.isOnline());
+		session.setAttribute("username", validUser.getUsername());
+		// username of logged-in user to an attribute 'username'
 		return new ResponseEntity<User>(validUser,HttpStatus.OK);
 		//response.data=validuser
 		//response.status=200
+	}
+	
+	@RequestMapping(value="/logout",method=RequestMethod.PUT)
+	public ResponseEntity<?> logout(HttpSession session){
+		String username=(String)session.getAttribute("username");
+		System.out.println("Name of the user is" + username);
+		if(username==null) {
+			Error error= new Error(5,"Unauthorized access.. please login..");
+			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
+		}
+		User user=userService.getUserByUsername(username);
+		user.setOnline(false);
+		userService.update(user); //online status is false
+		session.removeAttribute("username");
+		session.invalidate();
+		return new ResponseEntity<User>(user,HttpStatus.OK);
 	}
 		
 }

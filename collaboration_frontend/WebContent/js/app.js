@@ -1,6 +1,6 @@
 
 
-var app=angular.module("app",['ngRoute'])
+var app=angular.module("app",['ngRoute','ngCookies'])
 app.config(function($routeProvider) {
 	$routeProvider
 		.when('/register',{
@@ -17,4 +17,20 @@ app.config(function($routeProvider) {
 		.otherwise({
 			templateUrl:'views/home.html'
 		})
+})
+
+
+app.run(function($rootScope,$cookieStore,UserService,$location){
+	if($rootScope.currentUser==undefined)
+		$rootScope.currentUser=$cookieStore.get('userDetails')
+		
+		$rootScope.logout=function(){
+		UserService.logout().then(function(response){
+			delete $rootScope.currentUser;
+			$cookieStore.remove('userDetails')
+			$location.path('/login')
+		},function(response){	
+			console.log(response.status)
+		})
+	}
 })

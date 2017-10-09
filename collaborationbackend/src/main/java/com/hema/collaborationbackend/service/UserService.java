@@ -9,4 +9,5 @@ public interface UserService {
 	boolean isEmailValid(String email);
 	User login(User user);
 	void update(User user);
+	User getUserByUsername(String username);
 }
