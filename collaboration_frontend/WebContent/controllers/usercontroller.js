@@ -54,9 +54,24 @@ app.controller('UserController',function($scope,UserService,$location,$rootScope
 			})
 		}
 		
+	$scope.updateUser=function() {
+		UserService.updateUser($scope.user).then(function(response){
+			alert('Update the details succcessfully')
+			$location.path('/home')
+		},function(response){
+			if(response.status==401){
+				$location.path('/login')
+			}
+			else{
+			$scope.error=response.data
+			$location.path('/editprofile')
+			}
+		})
+	}
+		
 	if($rootScope.currentUser!=undefined){
 	UserService.getUser().then(function(response){
-		$scope.user=response.data
+		$scope.user=response.data //data is ntg but user object in json format 
 	},function(response){
 		console.log(response.status)
 	})

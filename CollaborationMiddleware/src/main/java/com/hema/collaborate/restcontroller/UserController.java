@@ -105,4 +105,30 @@ public class UserController {
 		User user=userService.getUserByUsername(username);
 		return new ResponseEntity<User>(user,HttpStatus.OK);
 	}
+	
+	@RequestMapping(value="/updateuser",method=RequestMethod.PUT)
+	public ResponseEntity<?> updateUser(@RequestBody User user,HttpSession session)
+	{
+		String username=(String)session.getAttribute("username");
+		if(username==null) {
+			Error error=new Error(5,"Unauthorized access.. please login..");
+			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
+		}
+		
+		if(!userService.isUpdatedEmailValid(user.getEmail(), user.getUsername()) ) {
+			Error error = new Error(3,"Email address already exists.. please enter different email");
+			return new ResponseEntity<Error>(error,HttpStatus.NOT_ACCEPTABLE);
+		}
+		
+		try {
+		userService.update(user);
+		return new ResponseEntity<User>(user,HttpStatus.OK);
+		}
+		catch(Exception e) {
+			Error error =new Error(4,"unable to update user deatils");
+			return new ResponseEntity<Error>(error,HttpStatus.INTERNAL_SERVER_ERROR);
+			
+		}
+	
+	}
 }
