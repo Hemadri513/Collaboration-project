@@ -36,9 +36,12 @@ app.run(function($rootScope,$cookieStore,UserService,$location){
 			delete $rootScope.currentUser;
 			$cookieStore.remove('userDetails')
 			$location.path('/login')
-		},function(response){	
+		},
+		function(response)
+		{	
 			console.log(response.status)
-			if(response.status==401){
+			if(response.status==401)
+			{
 				console.log('error in logout')
 				delete $rootScope.currentUser;
 				$cookieStore.remove('userDetails')
