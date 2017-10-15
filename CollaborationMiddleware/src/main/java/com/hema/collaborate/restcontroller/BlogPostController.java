@@ -79,4 +79,19 @@ public class BlogPostController {
 		BlogPost blogPost = blogPostService.getBlogById(id);
 		return new ResponseEntity<BlogPost>(blogPost, HttpStatus.OK);
 	}
+	
+	@RequestMapping(value="/update",method=RequestMethod.PUT)
+	public ResponseEntity<?> updateBlogPost(@RequestBody BlogPost blogPost, HttpSession session){
+		String username=(String)session.getAttribute("username");
+		if(username==null) {
+			Error error=new Error(5,"Unauthorized access");
+			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
+		}
+		//admin has rejected the blogpost but reason is not mentioned
+		if(!blogPost.isApproved() && blogPost.getRejectionReason()==null)
+			blogPost.setRejectionReason("Not mentioned");
+		blogPostService.updateBlogPost(blogPost);
+		return new ResponseEntity<BlogPost>(blogPost,HttpStatus.OK);
+	}
+	
 }

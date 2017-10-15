@@ -11,10 +11,11 @@
 <div class="panel-body">
 {{blogPost.blogContent}}
 </div>
-
 </div>
 </div>
 
 </div>
-
+{{blogPost.likes}} Likes
+<a><span class="glyphicon glyphicon-thumbs-up" ng-class="isLiked?'liked':'default'" ng-click="updateLikes()"></span></a>
+<br>
 <b>TextArea for posting comments</b>

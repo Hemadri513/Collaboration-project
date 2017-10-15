@@ -10,4 +10,5 @@ public interface BlogPostDAO {
 	List<BlogPost> getBlogs(int approved);
 	BlogPost getBlogById(int id);
 
+	void updateBlogPost(BlogPost blogPost);
 }

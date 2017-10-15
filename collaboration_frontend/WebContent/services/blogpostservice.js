@@ -19,5 +19,14 @@ app.factory('BlogPostService',function($http){
 	blogPostService.getBlogPostById=function(id){
 		return $http.get(BASE_URL + "/getblogbyid/"+id)
 	}
+	/*
+	 * to update approved property and rejection reason (approved /reject)
+	 * id,blog titlle,blog content 
+	 * */
+	blogPostService.updateBlogPost=function(blogPost){
+		console.log(blogPost)
+		return $http.put(BASE_URL + "/update",blogPost)
+	}
+	
 	return blogPostService;
 })

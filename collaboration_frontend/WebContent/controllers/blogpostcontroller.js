@@ -42,7 +42,7 @@ app.controller('BlogPostController',function($scope,BlogPostService,$location){
 				$location.path('/login')
 		})
 	}
-	blogsApproved()	//select * from blogpost where approved =1
+	blogsApproved()	 //select * from blogpost where approved =1
 	blogsWaitingForApproval()	//select * from blogpost where approved - 0
 	
 })

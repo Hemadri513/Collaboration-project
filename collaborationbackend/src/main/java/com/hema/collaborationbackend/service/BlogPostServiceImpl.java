@@ -31,4 +31,10 @@ public class BlogPostServiceImpl implements BlogPostService {
 		return blogPostDAO.getBlogById(id);
 	}
 
+	@Override
+	public void updateBlogPost(BlogPost blogPost) {
+		blogPostDAO.addBlogPost(blogPost);
+		
+	}
+
 }
