@@ -10,7 +10,7 @@
 </thead>
 <tbody>
 
-<tr ng-repeat=" blogPost in listOfBlogsWaitingForApproval">
+<tr ng-repeat="blogPost in listOfBlogsWaitingForApproval">
 	<td><a href="#/getapprovalform/{{blogPost.id}}">{{blogPost.blogTitle}}</a></td>
 	<td>{{blogPost.postedBy.username}}</td>
 	<td>{{blogPost.postedOn | date : 'MM/dd/yyyy HH:mm'}}</td>
@@ -22,12 +22,14 @@
 </div>
 
 <div>
-<b>List of blogs </b>
+<b>List of blogs</b>
 <table class="table table-striped">
 
 <thead>
 <tr>
-	<th>Blog Title</th><th>Author</th><th>Posted On</th>
+	<th>Blog Title</th>
+	<th>Author</th>
+	<th>Posted On</th>
 </tr>
 </thead>
 <tbody>

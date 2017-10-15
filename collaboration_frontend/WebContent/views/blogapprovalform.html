@@ -1,4 +1,18 @@
-{{blogPost.blogTitle}}<br>
-{{blogPost.blogContent}}<br>
+<div class="row">
+<div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<div>{{blogPost.blogTitle}}</div>
+<span><strong>Created By:</strong>{{blogPost.postedBy.username}}</span>
+<span><strong>on: </strong>{{blogPost.postedOn | date:'medium'}}</span>
+</div>
 
+<div class="panel-body">
+	{{blogPost.blogContent}}
+</div>
+
+</div>
+</div>
+
+</div>
 <b>Approval Form</b>

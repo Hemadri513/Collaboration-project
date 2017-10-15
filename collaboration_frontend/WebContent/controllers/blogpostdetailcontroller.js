@@ -3,6 +3,7 @@
  */
 
 app.controller('BlogPostDetailController',function($scope,$location,BlogPostService,$routeParams){
+	
 	var id=$routeParams.id
 	
 	alert('blogpostdetailcontroller instantiated')
