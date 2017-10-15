@@ -18,6 +18,31 @@ app.config(function($routeProvider) {
 			templateUrl:'views/editprofile.html',
 			controller:'UserController'
 		})
+		.when('/addblogpost',{
+			templateUrl:'views/blogpostform.html',
+			controller:'BlogPostController'
+		})
+		.when('/getblogs',{
+			templateUrl:'views/blogslist.html',
+			controller:'BlogPostController' // c to v
+		})
+		.when('/getblogbyid/:id',{ //list of blgs approved
+			templateUrl:'views/blogdetails.html', //details of approved blog blogpost + approval form
+			controller:'BlogPostDetailController'	//$scope.blogpost = select * from blogpost where id=?
+			
+		})
+		.when('/getapprovalform/:id',{
+			templateUrl:'views/blogapprovalform.html', 	//blogpost + textarea
+			controller:'BlogPostDetailController'	//$scope.blogpost = select * from blogpost where id=?
+		})
+		.when('/addjob',{
+			templateUrl:'views/jobform.html',
+			controller:'JobController'
+		})
+		.when('/getalljobs',{
+			templateUrl:'views/jobform.html',
+			controller:'JobController'
+		})
 		.otherwise({
 			templateUrl:'views/home.html'
 		})

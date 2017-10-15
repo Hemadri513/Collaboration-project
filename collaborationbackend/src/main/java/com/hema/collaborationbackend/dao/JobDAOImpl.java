@@ -12,87 +12,27 @@ import org.springframework.stereotype.Repository;
 
 import com.hema.collaborationbackend.model.Job;
 
-@Repository("jobDAO")
+@Repository
+@Transactional
 public class JobDAOImpl implements JobDAO {
 
 	@Autowired
-	SessionFactory sessionFactory;
-	
-	public JobDAOImpl(SessionFactory sessionFactory)
-	{
-		this.sessionFactory=sessionFactory;
-	}
-	
-	@Transactional
-	@Override
-	public boolean createJob(Job job) {
-		try {
-			sessionFactory.getCurrentSession().saveOrUpdate(job);
-			return true;
-		}
-		catch(Exception e)
-		{
-			System.out.println("exception arised" +e);
-			return false;
-		}
-	}
+	private SessionFactory sessionFactory;
 
-	@Transactional
 	@Override
-	public boolean approveJob(Job job) {
-		try {
-			job.setStatus("A");
-			sessionFactory.getCurrentSession().saveOrUpdate(job);
-			return true;
-		}
-		catch(Exception e)
-		{
-			System.out.println("exception arised:" +e);
-			return false;
-		}
-	}
-
-	@Transactional
-	@Override
-	public boolean deleteJob(int jobid) {
-		try {
-			Session session=sessionFactory.openSession();
-			Job job=(Job)session.get(Job.class,jobid);
-			session.delete(job);
-			session.flush();
-			session.close();
-			return true;
-		}
-		catch(Exception e)
-		{
-			System.out.println("Exception Arised" +e);
-			return false;
-		}
-	}
-
-	@Transactional
-	@Override
-	public boolean editJob(int jobid) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Transactional
-	@Override
-	public Job getJob(int jobid) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Transactional
-	@Override
-	public List<Job> getJobs() {
+	public void addJob(Job job) {
+		Session session = sessionFactory.getCurrentSession();
+		session.save(job);
 		
-		Session session = sessionFactory.openSession();
-		Query query = session.createQuery("from Job where status = 'A'");
-		List<Job> listJob= query.list();
-		session.close();
-		return listJob;
 	}
+
+	@Override
+	public List<Job> getAllJobs() {
+		Session session=sessionFactory.getCurrentSession();
+		Query query=session.createQuery("from Job"); //select * from job
+ 		return query.list(); //list of all objects
+	}
+	
+	
 
 }
