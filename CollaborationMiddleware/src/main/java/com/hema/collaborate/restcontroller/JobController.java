@@ -39,9 +39,9 @@ public class JobController {
 		if(!user.getRole().equals("ADMIN")) {
 			Error error = new Error(6,"Access Denied");
 			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
-			
 		}
 		try {
+			
 			job.setPostedOn(new Date());
 		jobService.addJob(job);
 		return new ResponseEntity<Job>(job,HttpStatus.OK);

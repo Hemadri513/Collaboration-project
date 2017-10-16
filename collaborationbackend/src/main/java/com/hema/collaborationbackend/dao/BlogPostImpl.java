@@ -22,7 +22,7 @@ public class BlogPostImpl implements BlogPostDAO {
 	@Override
 	public void addBlogPost(BlogPost blogPost) {
 		Session session=sessionFactory.getCurrentSession();
-		session.save(blogPost);
+		session.saveOrUpdate(blogPost);
 	}
 
 	@Override
