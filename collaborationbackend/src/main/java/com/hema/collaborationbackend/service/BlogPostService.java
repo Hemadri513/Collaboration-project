@@ -2,6 +2,7 @@ package com.hema.collaborationbackend.service;
 
 import java.util.List;
 
+import com.hema.collaborationbackend.model.BlogComment;
 import com.hema.collaborationbackend.model.BlogPost;
 
 public interface BlogPostService {
@@ -13,4 +14,8 @@ public interface BlogPostService {
 	BlogPost getBlogById(int id);
 
 	void updateBlogPost(BlogPost blogPost);
+	
+	void addBlogComment(BlogComment blogComment);
+
+	List<BlogComment> getBlogComments(int blogPostId);
 }

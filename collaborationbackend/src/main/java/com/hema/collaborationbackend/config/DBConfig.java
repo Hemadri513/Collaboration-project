@@ -13,6 +13,7 @@ import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.hema.collaborationbackend.model.BlogComment;
 import com.hema.collaborationbackend.model.BlogPost;
 import com.hema.collaborationbackend.model.Job;
 import com.hema.collaborationbackend.model.User;
@@ -32,7 +33,7 @@ public class DBConfig {
 		hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "update");
 		hibernateProperties.setProperty("hibernate.show_sql", "true");
 		lsf.addProperties(hibernateProperties);
-		Class classes[]=new Class[] {User.class,BlogPost.class,Job.class};
+		Class classes[]=new Class[] {User.class,BlogPost.class,Job.class,BlogComment.class};
 		return lsf.addAnnotatedClasses(classes).buildSessionFactory();
 	}
 	

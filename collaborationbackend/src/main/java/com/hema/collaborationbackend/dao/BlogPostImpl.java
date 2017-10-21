@@ -10,6 +10,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.hema.collaborationbackend.model.BlogComment;
 import com.hema.collaborationbackend.model.BlogPost;
 
 @Repository
@@ -59,6 +60,20 @@ public class BlogPostImpl implements BlogPostDAO {
 		session.update(blogPost); // update approved/rejection
 		//if approved -> upadte blogpost set approved=1 where id=?
 		//if rejected -> update set approved =0, rejectionreason=? where id=?
+	}
+
+	@Override
+	public void addBlogComment(BlogComment blogComment) {
+		Session session=sessionFactory.getCurrentSession();
+		session.save(blogComment);
+		
+	}
+
+	@Override
+	public List<BlogComment> getBlogComments(int blogPostId) {
+		Session session=sessionFactory.getCurrentSession();
+		Query query=session.createQuery("from BlogComment where blogPost.id="+blogPostId);
+		return query.list();
 	}
 
 }

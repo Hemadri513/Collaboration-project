@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.hema.collaborationbackend.model.BlogComment;
 import com.hema.collaborationbackend.model.BlogPost;
 import com.hema.collaborationbackend.model.Error;
 import com.hema.collaborationbackend.model.User;
@@ -94,4 +95,39 @@ public class BlogPostController {
 		return new ResponseEntity<BlogPost>(blogPost,HttpStatus.OK);
 	}
 	
+	
+	@RequestMapping(value="/addcomment",method=RequestMethod.POST)
+	public ResponseEntity<?> addBlogComment(@RequestBody BlogComment blogComment,HttpSession session){
+		
+		String username=(String)session.getAttribute("username");
+		if(username==null) {
+			Error error=new Error(5,"Unauthorized access");
+			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
+		}
+		
+		//commentedBy?-> user
+		User user=userService.getUserByUsername(username);
+		blogComment.setCommentedBy(user);
+		blogComment.setCommentedOn(new Date());
+		try {
+		blogPostService.addBlogComment(blogComment);
+		return new ResponseEntity<BlogComment>(blogComment,HttpStatus.OK);
+		}catch(Exception e) {
+			Error error = new Error(7,"unable to post comments");
+			return new ResponseEntity<Error>(error,HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	@RequestMapping(value="/getcomments/{blogPostId}",method=RequestMethod.GET)
+	public ResponseEntity<?> getComments(@PathVariable int blogPostId, HttpSession session){
+	
+		String username=(String)session.getAttribute("username");
+		if(username==null) {
+			Error error=new Error(5,"Unauthorized access");
+			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
+		}
+		List<BlogComment> blogComments=blogPostService.getBlogComments(blogPostId);
+		return new ResponseEntity<List<BlogComment>>(blogComments,HttpStatus.OK);
+}
+		
 }
