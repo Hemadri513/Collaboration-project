@@ -57,6 +57,8 @@ app.controller('BlogPostDetailController',function($scope,$location,BlogPostServ
 		console.log($scope.blogComment)
 		BlogPostService.addComment($scope.blogComment).then(function(response){
 			console.log(response.data)
+			$scope.blogComment.commentText=''
+			getBlogComments();
 		},function(response){
 			if(response.status==401)
 				$location.path('/login') //login.html

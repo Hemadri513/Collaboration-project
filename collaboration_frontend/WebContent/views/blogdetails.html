@@ -20,10 +20,10 @@
 <br>
 <b>Comments</b>
 <ul>
-<li ng-repeat="blogcomment in blogComments" style="list:'none'">
-{{blogcomment.commentText}}
+<li ng-repeat="blogComment in blogComments" style="list:'none'">
+{{blogComment.commentText}}
 <strong>by</strong>{{blogComment.commentedBy.username}}
-<strong>on</strong>{{blogComment.commentedOn | date : 'medium' }}
+<strong>on</strong>{{blogComment.commentedOn | date :'medium'}}
 </li>
 </ul>
 <div>
