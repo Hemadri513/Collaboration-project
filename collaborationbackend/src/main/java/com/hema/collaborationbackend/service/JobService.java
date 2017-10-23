@@ -7,5 +7,8 @@ import com.hema.collaborationbackend.model.Job;
 public interface JobService {
 
 	void addJob(Job job);
+	
 	List<Job> getAllJobs();
+
+	Job getJob(int jobId);
 }

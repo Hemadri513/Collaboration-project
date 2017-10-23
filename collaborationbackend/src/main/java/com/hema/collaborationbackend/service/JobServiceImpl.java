@@ -22,8 +22,13 @@ public class JobServiceImpl implements JobService {
 
 	@Override
 	public List<Job> getAllJobs() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return jobDAO.getAllJobs();
+	}
+
+	@Override
+	public Job getJob(int jobId) {
+		return jobDAO.getJob(jobId);
 	}
 
 }

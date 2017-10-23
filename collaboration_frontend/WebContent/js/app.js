@@ -40,7 +40,7 @@ app.config(function($routeProvider) {
 			controller:'JobController'
 		})
 		.when('/getalljobs',{
-			templateUrl:'views/jobform.html',
+			templateUrl:'views/jobslist.html',
 			controller:'JobController'
 		})
 		.otherwise({

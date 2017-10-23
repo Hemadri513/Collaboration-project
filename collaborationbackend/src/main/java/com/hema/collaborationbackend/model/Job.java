@@ -21,6 +21,7 @@ public class Job {
 	private String skillsRequired;
 	private String salary;
 	private String location;
+	private String companyname;
 	private Date postedOn;
 	public int getId() {
 		return id;
@@ -63,6 +64,12 @@ public class Job {
 	}
 	public void setPostedOn(Date postedOn) {
 		this.postedOn = postedOn;
+	}
+	public String getCompanyname() {
+		return companyname;
+	}
+	public void setCompanyname(String companyname) {
+		this.companyname = companyname;
 	}
 	
 	

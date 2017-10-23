@@ -45,7 +45,7 @@ public class BlogPostServiceImpl implements BlogPostService {
 
 	@Override
 	public List<BlogComment> getBlogComments(int blogPostId) {
-		return blogPostDAO.getBlogComments(blogPostId);
+		return  blogPostDAO.getBlogComments(blogPostId);
 	}
 
 }

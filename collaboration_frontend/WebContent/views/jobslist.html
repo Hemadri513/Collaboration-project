@@ -13,11 +13,25 @@
 
 <tbody>
 <tr ng-repeat="job in jobs">
-<td><a>{{job.jobTitle}}</a></td>
-<th><a>{{job.postedOn}}</a></th>
-<th><a>{{job.skillsRequired}}</a></th>
+<td><a href="" ng-click="getJobDetails(job.id)">{{job.jobTitle}}</a></td>
+<td>{{job.postedOn | date : 'medium'}}</td>
+<td>{{job.skillsRequired}}</td>
 
 </tr>
 
 </tbody>
 </table>
+<div ng-show="showJobDetails">
+JobDetails
+<pre>
+JobTitle:{{job.jobTitle}}
+JobDescription:{{job.jobDescription}}
+Skills Required:{{job.skillsRequired}}
+Salary : {{job.salary}}
+Location: {{job.location}}
+Company Name: {{job.companyname}}
+Posted On: {{job.postedOn | date:'medium'}}
+
+
+</pre>
+</div>

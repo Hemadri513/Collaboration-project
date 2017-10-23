@@ -32,6 +32,13 @@ public class JobDAOImpl implements JobDAO {
 		Query query=session.createQuery("from Job"); //select * from job
  		return query.list(); //list of all objects
 	}
+
+	@Override
+	public Job getJob(int jobId) {
+		Session session=sessionFactory.getCurrentSession();
+		Job job=(Job)session.get(Job.class, jobId);
+		return job;
+	}
 	
 	
 
