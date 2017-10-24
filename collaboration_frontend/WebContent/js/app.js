@@ -43,6 +43,10 @@ app.config(function($routeProvider) {
 			templateUrl:'views/jobslist.html',
 			controller:'JobController'
 		})
+		.when('/getsuggestedusers',{
+			templateUrl:'views/suggestedusers.html',
+			controller:'FriendController'
+		})
 		.otherwise({
 			templateUrl:'views/home.html'
 		})
