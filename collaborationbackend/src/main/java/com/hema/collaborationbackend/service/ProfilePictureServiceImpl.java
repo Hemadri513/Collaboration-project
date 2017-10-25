@@ -17,4 +17,10 @@ public class ProfilePictureServiceImpl implements ProfilePictureService {
 		profilePictureDAO.uploadProfilePic(profilePicture);
 	}
 
+	@Override
+	public ProfilePicture getProfilePicture(String username) {
+		
+		return profilePictureDAO.getProfilePic(username);
+	}
+
 }

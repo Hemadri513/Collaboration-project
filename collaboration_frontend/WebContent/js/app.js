@@ -43,6 +43,9 @@ app.config(function($routeProvider) {
 			templateUrl:'views/jobslist.html',
 			controller:'JobController'
 		})
+		.when('/uploadprofilepic',{
+			templateUrl:'views/profilepicture.html'
+		})
 		.when('/getsuggestedusers',{
 			templateUrl:'views/suggestedusers.html',
 			controller:'FriendController'
