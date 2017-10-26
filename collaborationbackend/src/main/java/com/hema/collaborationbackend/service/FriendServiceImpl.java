@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hema.collaborationbackend.dao.FriendDAO;
+import com.hema.collaborationbackend.model.Friend;
 import com.hema.collaborationbackend.model.User;
 
 @Service
@@ -16,6 +17,11 @@ public class FriendServiceImpl implements FriendService {
 	@Override
 	public List<User> listOfSuggestedUsers(String username) {
 		return friendDAO.listOfSuggestedUsers(username);
+	}
+	@Override
+	public void friendRequest(Friend friend) {
+		
+		friendDAO.friendRequest(friend);
 	}
 
 }

@@ -10,6 +10,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.hema.collaborationbackend.model.Friend;
 import com.hema.collaborationbackend.model.User;
 @Repository
 @Transactional
@@ -32,6 +33,13 @@ public class FriendDAOImpl implements FriendDAO {
 		query.addEntity(User.class); //to convert records to User Objects
 		List<User> suggestedUsers=query.list();
 		return suggestedUsers; //List<User>
+	}
+
+	@Override
+	public void friendRequest(Friend friend) {
+		Session session=sessionFactory.getCurrentSession();
+		session.save(friend);
+		
 	}
 	
 	

@@ -12,7 +12,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @Configuration
 @EnableWebMvc
 @EnableTransactionManagement
-@ComponentScan("com")
+@ComponentScan("com.hema")
 public class WebConfig extends WebMvcConfigurerAdapter {
 	
 	@Bean
