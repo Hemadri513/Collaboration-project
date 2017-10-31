@@ -48,4 +48,17 @@ public class FriendController {
 		friendService.friendRequest(friend); //insert into friend table
 		return new ResponseEntity<Friend>(friend,HttpStatus.OK);
 	}
+	
+	@RequestMapping(value="/pendingrequests",method=RequestMethod.GET)
+	public ResponseEntity<?> pendingRequests(HttpSession session){
+		String username=(String)session.getAttribute("username");
+		if(username==null) {
+			Error error=new Error(5,"Unauthorized access");
+			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
+		}
+
+		List<Friend> pendingRequests=friendService.pendingRequests(username);
+		return new ResponseEntity<List<Friend>>(pendingRequests,HttpStatus.OK);
+		
+	}
 }

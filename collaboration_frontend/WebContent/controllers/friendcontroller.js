@@ -13,6 +13,15 @@ app.controller('FriendController',function($scope,$location,FriendService){
 		})
 	}
 	
+	function pendingRequests(){
+		FriendService.pendingRequests().then(function(response){
+			$scope.pendingRequests=response.data //List<User>
+		},function(response){
+			if(response.status==401)
+				$location.path('/login')
+		})
+	}
+	
 	$scope.sendFriendRequest=function(toId){
 		FriendService.sendFriendRequest(toId).then(function(response){
 			alert('Friend Request has been send succesfully')
@@ -27,5 +36,6 @@ app.controller('FriendController',function($scope,$location,FriendService){
 	
 	
 	//function call
-	listOfSuggestedUsers()
+	listOfSuggestedUsers() //
+	pendingRequests()
 })

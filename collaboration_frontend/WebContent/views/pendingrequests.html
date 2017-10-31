@@ -1,0 +1,12 @@
+<table class="table table-striped">
+<tbody>
+<tr ng-repeat="request in pendingRequests">
+<td>{{request.fromId}}</td>
+<td><img src="http://localhost:8089/CollaborationMiddleware/getimage/{{request.fromId}}" alt="Image not available" height="40px" width="40px"></td>
+<td><a class="btn btn-primary">Accept Friend Request</a></td>
+<td><a class="btn btn-warning">Delete Friend Request</a></td>
+</tr>
+
+</tbody>
+
+</table>

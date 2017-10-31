@@ -18,7 +18,7 @@ public class JobDAOImpl implements JobDAO {
 
 	@Autowired
 	private SessionFactory sessionFactory;
-
+ 
 	@Override
 	public void addJob(Job job) {
 		Session session = sessionFactory.getCurrentSession();

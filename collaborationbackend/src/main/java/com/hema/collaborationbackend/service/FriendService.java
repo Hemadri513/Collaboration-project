@@ -11,4 +11,6 @@ public interface FriendService {
 
 	void friendRequest(Friend friend);
 	
+	List<Friend> pendingRequests(String toId);
+	
 }
