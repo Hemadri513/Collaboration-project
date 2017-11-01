@@ -1,4 +1,4 @@
-/**
+/*
  * 
  */
 
@@ -31,6 +31,21 @@ app.controller('FriendController',function($scope,$location,FriendService){
 			if(response.status==401)
 				$location.path('/login')
 			
+		})
+	}
+	
+	$scope.updatePendingRequest=function(request,statusValue){
+		console.log(request)
+		console.log(request.status)
+		request.status=statusValue
+		console.log(request.status) // A (accept) / D (delete)
+		console.log(request)
+		FriendService.updatePendingRequest(request).then(function(response){
+			pendingRequests()
+			$location.path('/pendingrequests')
+		},function(response){
+			if(response.status==401)
+				$location.path('/login')
 		})
 	}
 	

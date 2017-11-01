@@ -51,6 +51,16 @@ public class FriendDAOImpl implements FriendDAO {
 		return query.list();
 
 	}
+
+	@Override
+	public void updatePendingRequest(Friend friend) {
+		Session session=sessionFactory.getCurrentSession();
+		if(friend.getStatus()=='A')
+			session.update(friend); //update friend set status='a' where id=?
+		else
+			session.delete(friend); // delete from friend where id=?
+		
+	}
 	
 	
 }
