@@ -75,4 +75,16 @@ public class FriendController {
 		return new ResponseEntity<Friend>(friend,HttpStatus.OK);
 	}
 	
+	@RequestMapping(value="/friendslist", method=RequestMethod.GET)
+	public ResponseEntity<?> listOfFriends(HttpSession session) {
+		String username=(String)session.getAttribute("username");
+		if(username==null) {
+			Error error=new Error(5,"Unauthorized access");
+			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
+		}
+		List<String> friends=friendService.listOfFriends(username);
+		return new ResponseEntity<List<String>>(friends,HttpStatus.OK);
+		
+	}
+	
 }

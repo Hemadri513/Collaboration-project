@@ -8,6 +8,7 @@ import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.type.StandardBasicTypes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -60,6 +61,23 @@ public class FriendDAOImpl implements FriendDAO {
 		else
 			session.delete(friend); // delete from friend where id=?
 		
+	}
+
+	@Override
+	public List<String> listOfFriends(String username) {
+		Session session=sessionFactory.getCurrentSession();
+		SQLQuery sqlQuery1=session.createSQLQuery("select fromId from Friend where toId=? and status='A'").addScalar("fromId",StandardBasicTypes.STRING);
+		
+		sqlQuery1.setString(0, username);
+		List<String> list1=sqlQuery1.list();
+		System.out.println("Result of lst query" +list1);
+		SQLQuery sqlQuery2=session.createSQLQuery("select toId from Friend where fromId=? and status='A'").addScalar("toId",StandardBasicTypes.STRING);
+		sqlQuery2.setString(0, username);
+		List<String> list2=sqlQuery2.list();
+		System.out.println("Result of 2nd query" +list2);
+		list1.addAll(list2);	//list1=list1 u list2
+		System.out.println("Result of list1 + list2" +list1);
+		return list1;
 	}
 	
 	

@@ -31,5 +31,9 @@ public class FriendServiceImpl implements FriendService {
 	public void updateFriendRequest(Friend friend) {
 		friendDAO.updatePendingRequest(friend);
 	}
+	@Override
+	public List<String> listOfFriends(String username) {
+		return friendDAO.listOfFriends(username);
+	}
 
 }

@@ -15,4 +15,6 @@ public interface FriendService {
 
 	void updateFriendRequest(Friend friend);
 	
+	List<String> listOfFriends(String username);
+	
 }
