@@ -65,6 +65,7 @@
 		 </li>
 		<li><a href="#/uploadprofilepic" ng-show="currentUser.username"><img src="http://localhost:8089/CollaborationMiddleware/getimage/{{currentUser.username}}" height="40px" width="40px" alt="upload profile pic"></a></li>
 		<li><a href="#" ng-show="currentUser.online">Welcome {{currentUser.firstname}} {{currentUser.lastname}} </a></li>
+		<li><a href="#/chat" ng-show="currentUser.username">chat</a></li>
 		<li><a href="" ng-click="logout()" ng-show="currentUser.online">Logout</a></li>
 	
 		</ul>
@@ -90,5 +91,12 @@
 <script type="text/javascript" src="controllers/blogpostdetailcontroller.js"></script>
 <script type="text/javascript" src="controllers/friendcontroller.js"></script>
 <script type="text/javascript" src="services/friendservice.js"></script>
+
+<script type="text/javascript" src="controllers/chatcontroller.js"></script>
+<script type="text/javascript" src="services/chatservice.js"></script>
+
+<script type="text/javascript" src="js/sockjs/sockjs.min.js"></script>
+<script type="text/javascript" src="js/stomp/dist/stomp.min.js"></script>
+
 
 </html>
