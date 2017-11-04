@@ -63,12 +63,13 @@ app.config(function($routeProvider) {
 			controller:'ChatController'
 		})
 		.otherwise({
-			templateUrl:'views/home.html'
+			templateUrl:'views/home.html',
+			controller:'HomeController'
 		})
 })
 
 
-app.run(function($rootScope,$cookieStore,UserService,$location){
+app.run(function($rootScope,$cookieStore,UserService,$location,BlogPostService){
 	console.log('entering app.run function')
 	if($rootScope.currentUser==undefined)
 		$rootScope.currentUser=$cookieStore.get('userDetails')
@@ -93,4 +94,12 @@ app.run(function($rootScope,$cookieStore,UserService,$location){
 			}
 		})
 	}
+	
+	BlogPostService.getNotification().then(function(response){
+		$rootScope.blogApprovalStatus=response.data	//list of blogpost
+		$rootScope.approvalStatusLength=$rootScope.blogApprovalStatus.length //no of objects
+	},function(response){
+		if(response.status==401)
+			$location.path('/login')
+	})
 })

@@ -9,9 +9,11 @@ app.factory('BlogPostService',function($http){
 	{
 		return $http.post(BASE_URL + "/addblogpost",blogPost)
 	}
+	
 	blogPostService.blogsWaitingForApproval=function(){
 		return $http.get(BASE_URL + "/getblogs/"+0)	//select * from blogpost where approved=0
 	}
+	
 	blogPostService.blogsApproved=function(){
 		return $http.get(BASE_URL + "/getblogs/"+1)	//select * from blogpost where approved=0
 	}
@@ -35,6 +37,10 @@ app.factory('BlogPostService',function($http){
 	
 	blogPostService.getBlogComments=function(blogPostId){
 		return $http.get(BASE_URL + "/getcomments/"+blogPostId)
+	}
+	
+	blogPostService.getNotification=function(){
+		return $http.get(BASE_URL + "/getnotification")
 	}
 	return blogPostService;
 })

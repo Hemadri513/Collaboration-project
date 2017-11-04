@@ -63,6 +63,27 @@
 		 	<li><a href="#/listoffriends">Friends</a></li>
 		 </ul>
 		 </li>
+		 
+		 <li class="dropdown"><a href="" class="dropdown-toggle"
+							data-toggle="dropdown" ng-show="currentUser.username"> <span
+								class="glyphicon glyphicon-globe" ng-click="updateLength()"> <span
+									class="rw-number-notification" ng-if="approvalStatusLength>0">{{approvalStatusLength}}</span></span></a>
+
+							<ul class="dropdown-menu">
+
+								<li ng-repeat="blogPost in blogApprovalStatus"><a
+									href="" ng-click="updateViewedStatus(blogPost)">BlogPost titled <b>"{{blogPost.blogTitle}}"</b>
+										is <span ng-if="blogPost.approved">Approved</span>
+										
+										<spa ng-if="!blogPost.approved">
+										<div class="container">rejected for the reason {{blogPost.rejectionReason}}</div>
+										</span>
+								</a></li>
+
+							</ul></li>
+		 
+		 
+		 
 		<li><a href="#/uploadprofilepic" ng-show="currentUser.username"><img src="http://localhost:8089/CollaborationMiddleware/getimage/{{currentUser.username}}" height="40px" width="40px" alt="upload profile pic"></a></li>
 		<li><a href="#" ng-show="currentUser.online">Welcome {{currentUser.firstname}} {{currentUser.lastname}} </a></li>
 		<li><a href="#/chat" ng-show="currentUser.username">chat</a></li>
