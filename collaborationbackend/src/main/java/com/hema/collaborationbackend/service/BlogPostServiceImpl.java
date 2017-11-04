@@ -48,4 +48,9 @@ public class BlogPostServiceImpl implements BlogPostService {
 		return  blogPostDAO.getBlogComments(blogPostId);
 	}
 
+	@Override
+	public List<BlogPost> getNotification(String username) {
+		return blogPostDAO.getNotification(username);
+	}
+
 }

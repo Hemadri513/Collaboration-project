@@ -34,6 +34,14 @@ public class BlogPost {
 	
 	private int likes;
 	
+	private boolean viewed;
+	
+	public boolean isViewed() {
+		return viewed;
+	}
+	public void setViewed(boolean viewed) {
+		this.viewed = viewed;
+	}
 	public int getLikes() {
 		return likes;
 	}

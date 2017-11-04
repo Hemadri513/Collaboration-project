@@ -128,6 +128,18 @@ public class BlogPostController {
 		}
 		List<BlogComment> blogComments=blogPostService.getBlogComments(blogPostId);
 		return new ResponseEntity<List<BlogComment>>(blogComments,HttpStatus.OK);
-}
+	}
+	
+	@RequestMapping(value="/getnotification",method=RequestMethod.GET)
+	public ResponseEntity<?> getNotification(){
+/*		String username=(String)session.getAttribute("username");
+		if(username==null) {
+			Error error=new Error(5,"Unauthorized access");
+			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
+		}*/
+		String username="hemadri";
+		List<BlogPost> blogPostNotification=blogPostService.getNotification(username);
+		return new ResponseEntity<List<BlogPost>>(blogPostNotification,HttpStatus.OK);
+	}
 		
 }

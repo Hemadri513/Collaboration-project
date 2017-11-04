@@ -13,4 +13,5 @@ public interface BlogPostDAO {
 	void updateBlogPost(BlogPost blogPost);
 	void addBlogComment(BlogComment blogComment);
 	List<BlogComment> getBlogComments(int blogPostId);
+	List<BlogPost> getNotification(String username);
 }

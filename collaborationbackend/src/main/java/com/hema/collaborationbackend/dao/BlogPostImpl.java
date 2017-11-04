@@ -76,4 +76,14 @@ public class BlogPostImpl implements BlogPostDAO {
 		return query.list();
 	}
 
+	@Override
+	public List<BlogPost> getNotification(String username) {
+		Session session= sessionFactory.getCurrentSession();
+		Query query=session.createQuery("from BlogPost where postedBy.username=? and viewed=? and (approved=1 or rejectionReason is not null)");
+		query.setString(0, username);
+		query.setBoolean(1, false);
+		return query.list();
+		
+	}
+
 }
