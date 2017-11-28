@@ -21,7 +21,7 @@ public class WebSocketConfiguration implements WebSocketMessageBrokerConfigurer{
 
 	@Override
 	public void configureClientOutboundChannel(ChannelRegistration registration) {
-		// 
+		
 		
 	}
 
